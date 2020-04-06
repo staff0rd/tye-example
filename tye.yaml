@@ -1,0 +1,29 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+name: microservice
+registry: tyeContainerRegistry
+services:
+- name: frontend
+  project: frontend/frontend.csproj
+- name: backend
+  project: backend/backend.csproj
+- name: redis
+  image: redis
+  bindings:
+  - port: 6379
+- name: redis-cli
+  image: redis
+  args: "redis-cli -h redis MONITOR"
+- image: rediscommander/redis-commander
+  name: redis_commander
+  env:
+    - name: REDIS_HOSTS
+      value: redis:redis:6379
+  bindings:
+  - port: 8082
+    containerPort: 8081
+    protocol: http
