@@ -11,6 +11,9 @@ services:
   project: frontend/frontend.csproj
 - name: backend
   project: backend/backend.csproj
+  env:
+    - name: CONNECTIONSTRING__REDIS
+      value: redis:6379
 - name: redis
   image: redis
   bindings:
