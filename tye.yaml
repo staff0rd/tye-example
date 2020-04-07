@@ -18,12 +18,3 @@ services:
 - name: redis-cli
   image: redis
   args: "redis-cli -h redis MONITOR"
-# - image: rediscommander/redis-commander
-#   name: redis_commander
-#   env:
-#     - name: REDIS_HOSTS
-#       value: redis:redis:6379
-#   bindings:
-#   - port: 8082
-#     containerPort: 8081
-#     protocol: http
